@@ -1,0 +1,23 @@
+// Esse arquivo é basicamente a estrutura do banco de dados, quais tabelas vão ser criadas
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// Tabela
+model Event {
+  id               String  @id @default(uuid()) // id -> Define como PK; uuid (unique universal id) -> Gera um valor único para cada id de evento
+  title            String
+  details          String? // ? -> campo opcional
+  slug             String  @unique // slug -> URL amigável
+  maximumAttendees Int?    @map("maximum_attendees") // Número máximo de participantes
+
+  // 1 @ -> Alterações no campo; 2 @ -> Alterações na tabela
+
+  @@map("events") // Nome da tabela no banco de dados
+}
