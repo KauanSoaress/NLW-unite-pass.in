@@ -17,7 +17,21 @@ model Event {
   slug             String  @unique // slug -> URL amigável
   maximumAttendees Int?    @map("maximum_attendees") // Número máximo de participantes
 
-  // 1 @ -> Alterações no campo; 2 @ -> Alterações na tabela
+  attendees Attendee[]
 
+  // 1 @ -> Alterações no campo; 2 @ -> Alterações na tabela
   @@map("events") // Nome da tabela no banco de dados
+}
+
+model Attendee {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String
+  createdAt DateTime @default(now()) @map("created_at") // Data e hora de criação do registro
+  eventId   String   @map("event_id") // Chave estrangeira
+
+  event Event @relation(fields: [eventId], references: [id]) // Relacionamento entre tabelas (1 para N)
+
+  @@unique([eventId, email]) // Chave única para combinação de campos (só pode ter um registro com o mesmo evento e email	)
+  @@map("attendees")
 }
