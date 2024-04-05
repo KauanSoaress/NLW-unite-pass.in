@@ -2,25 +2,33 @@ POST http://localhost:3333/events
 Content-Type: application/json
 
 {
-  "title": "Novo Evento 2",
+  "title": 123,
   "details": null,
   "maximumAttendees": 1
 }
 
 ###
 
-POST http://localhost:3333/events/b57175e2-0ea4-4c6d-9be9-c37f35b4cbac/attendees
+POST http://localhost:3333/events/ec15dff9-5c07-464a-85b9-a783cb403df6/attendees
 Content-Type: application/json
 
 {
-  "name": "Kauan",
-  "email": "gbskauan2@gmail.com"
+  "name": "Kauan Soares",
+  "email": "gbskauan@gmail.com"
 }
 
 ###
 
-GET http://localhost:3333/events/943036d8-90f1-46e7-bfd0-ca925bb17288
+GET http://localhost:3333/events/ec15dff9-5c07-464a-85b9-a783cb403df6
 
 ###
 
-GET http://localhost:3333/attendeee/6/badge
+GET http://localhost:3333/attendees/9/badge
+
+###
+
+GET http://localhost:3333/attendees/8/check-in
+
+###
+
+GET http://localhost:3333/events/ec15dff9-5c07-464a-85b9-a783cb403df6/attendees
